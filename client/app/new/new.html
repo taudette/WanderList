@@ -1,0 +1,42 @@
+<div class="container">
+  <div class= "col-md-7">
+    <h1>
+      <a href="/">Home</a>
+    </h1>
+    <h2>New Trip Info</h2>
+    <form role="form" ng-submit="addTrip()">
+      <div class="form-group">
+        <label for="destination">Destination</label>
+        <div ng-include="'components/templates/countries.html'"></div>
+        <input ng-model="trip.region" type="text" class="form-control" id="region" placeholder="Enter Region">
+      </div>
+      <div class="form-group">
+        <label for="duraiton">Duration:</label>
+      </div>
+      <div class="form-group">
+        <datepicker ng-model='trip.duration' multi-select='selectedDates' select-range='true'></datepicker>
+      </div>
+  	<div class="form-group">
+  		<label for="budget">Budget:</label>
+  		<input ng-model="trip.budget"type="text" class="form-control" id="budget" placeholder="How much money do you have?">
+  	</div>
+  		<div class="form-group">
+  		<label for="travel">Means Of Travel:</label>
+  		<input ng-model="trip.means" type="text" class="form-control" id="travel" placeholder="How are you gonna get there?">
+  	</div>
+    <div class="form-group">
+      <label for="travel">Notes:</label>
+      <input ng-model="trip.notes" type="text" class="form-control" id="travel" placeholder="Anything else?">
+    </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+  <div class="col-md-5">
+    <h1> TRIPS </h1>
+    <li ng-repeat="trip in trips">
+      <header>{{ trip.country }}</header>
+      
+    </li>
+  </div>
+</div>
