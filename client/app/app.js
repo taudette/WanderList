@@ -6,7 +6,8 @@ angular.module('wanderApp', [
   'ngSanitize',
   'ngRoute',
   'btford.socket-io',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'gm.datepickerMultiSelect'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
