@@ -1,42 +1,27 @@
-<div class="container">
-  <div class= "col-md-7">
-    <h1>
-      <a href="/">Home</a>
-    </h1>
-    <h2>New Trip Info</h2>
-    <form role="form" ng-submit="addTrip()">
-      <div class="form-group">
-        <label for="destination">Destination</label>
-        <div ng-include="'components/templates/countries.html'"></div>
-        <input ng-model="trip.region" type="text" class="form-control" id="region" placeholder="Enter Region">
-      </div>
-      <div class="form-group">
-        <label for="duraiton">Duration:</label>
-      </div>
-      <div class="form-group">
-        <datepicker ng-model='trip.duration' multi-select='selectedDates' select-range='true'></datepicker>
-      </div>
-  	<div class="form-group">
-  		<label for="budget">Budget:</label>
-  		<input ng-model="trip.budget"type="text" class="form-control" id="budget" placeholder="How much money do you have?">
-  	</div>
-  		<div class="form-group">
-  		<label for="travel">Means Of Travel:</label>
-  		<input ng-model="trip.means" type="text" class="form-control" id="travel" placeholder="How are you gonna get there?">
-  	</div>
-    <div class="form-group">
-      <label for="travel">Notes:</label>
-      <input ng-model="trip.notes" type="text" class="form-control" id="travel" placeholder="Anything else?">
-    </div>
 
-      <button type="submit" class="btn btn-default">Submit</button>
-    </form>
-  </div>
-  <div class="col-md-5">
-    <h1> TRIPS </h1>
+<div ng-include="'components/navbar/navbar.html'"></div>
+ 
+<div class="container">
+
+  <form class="trip-form" ng-submit="addTrip()" name="tripForm">
+    <input class="form-control" ng-model="newTrip.country" rows="3" placeholder="What country are you going to?" required/>
+    <input class="form-control" ng-model="newTrip.region" rows="3" placeholder="Enter a region" required/>
+    <input class="form-control" ng-model="newTrip.duration" rows="3" placeholder="How long do you want to go for?" required/>
+    <input class="form-control" ng-model="newTrip.info" rows="3" placeholder="Anything you want to add?" required/>
+    
+    <input class="btn btn-primary" type="submit" ng-disabled="tripForm.$invalid" value="Post">
+  </form>
+ <a ng-click="removeTrip()" ng-hide="true" class="btn">Delete</a>
+  <ul class="trip-list">
     <li ng-repeat="trip in trips">
-      <header>{{ trip.country }}</header>
+      <!-- <header>{{ trip }}</header> -->
+      <p>{{ trip.country }}</p>
+      <p>{{ trip.region }}</p>
+      <p>{{ trip.duration }}</p>
+      <p>{{ trip.info }}</p>
+      <button type="button" class="close" ng-click="deleteTrip(trip)">&times;</button>
       
     </li>
-  </div>
+  </ul>
+
 </div>
