@@ -6,5 +6,9 @@ angular.module('wanderApp')
       .when('/new', {
         templateUrl: 'app/new/new.html',
         controller: 'NewCtrl'
+      })
+       .when('/', {
+        templateUrl: 'app/main/main.html',
+        controller: 'MainCtrl'
       });
   });

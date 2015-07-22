@@ -23,11 +23,18 @@ exports.show = function(req, res) {
 
 // Creates a new trip in the DB.
 exports.create = function(req, res) {
-  Trip.create(req.body, function(err, trip) {
-    if(err) { return handleError(res, err); }
-    return res.json(201, trip);
+  // Trip.create(req.body, function(err, trip) {
+  //   if(err) { return handleError(res, err); }
+  //   return res.json(201, trip);
+  // });
+  ///make so only logged in users can create trips
+  var trip = new Trip(_.merge({ author: req.user._id }, req.body));
+    trip.save(function(err, trip) {
+      if(err) { return handleError(res, err); }
+      return res.json(201, trip);
   });
 };
+
 
 // Updates an existing trip in the DB.
 exports.update = function(req, res) {

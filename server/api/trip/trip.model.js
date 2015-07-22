@@ -7,7 +7,11 @@ var TripSchema = new Schema({
   country: String,
   region: String,
   duration: String,
-  info: String
+  info: String,
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }
 
 });
 

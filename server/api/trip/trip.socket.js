@@ -15,8 +15,14 @@ exports.register = function(socket) {
   });
 }
 
+// function onSave(socket, doc, cb) {
+//   socket.emit('trip:save', doc);
+// }
+//for users
 function onSave(socket, doc, cb) {
-  socket.emit('trip:save', doc);
+  Trip.populate(doc, {path:'author', select: 'name'}, function(err, trip) {
+    socket.emit('trip:save', trip);
+  });
 }
 
 function onRemove(socket, doc, cb) {
